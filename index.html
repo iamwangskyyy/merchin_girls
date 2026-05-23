@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>멋찐걸 — 시즌 1. 아직 멋쪄지지 않은 인간들</title>
+<meta name="description" content="멋진 여자가 되고 싶지만 아직은 한참 멀었다고 느끼는 두 사람이, 삶과 예술과 일과 사랑을 통과하며 자기만의 멋을 찾아가는 대화형 팟캐스트.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700;800&family=IBM+Plex+Sans+KR:wght@300;400;500;700&family=Bodoni+Moda:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#1a1612;
+  --paper:#f4ede1;
+  --paper-warm:#ebe0cc;
+  --accent:#c8351a;
+  --accent-deep:#7a1c0d;
+  --muted:#8a7d6a;
+  --olive:#5a5436;
+  --line:#1a1612;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Sans KR', sans-serif;
+  font-weight:300;
+  line-height:1.7;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* 종이 텍스처 */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(122,28,13,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(90,84,54,0.04) 0%, transparent 50%);
+  pointer-events:none;
+  z-index:1;
+}
+
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:2;
+  mix-blend-mode:multiply;
+}
+
+.container{
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 40px;
+  position:relative;
+  z-index:10;
+}
+
+/* ============ TOP BAR ============ */
+.topbar{
+  border-bottom:1px solid var(--ink);
+  padding:14px 0;
+  font-family:'Bodoni Moda', serif;
+  font-size:11px;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  position:relative;
+  z-index:20;
+}
+
+.topbar-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.topbar-left{font-style:italic}
+
+.topbar-right{
+  display:flex;
+  gap:24px;
+}
+
+/* ============ HERO ============ */
+.hero{
+  padding:60px 0 80px;
+  border-bottom:3px double var(--ink);
+  position:relative;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:40px;
+  align-items:end;
+  margin-bottom:60px;
+}
+
+.hero-label{
+  font-family:'Bodoni Moda', serif;
+  font-style:italic;
+  font-size:14px;
+  letter-spacing:0.08em;
+}
+
+.hero-label.right{text-align:right}
+
+.hero-issue{
+  font-family:'Bodoni Moda', serif;
+  font-size:13px;
+  letter-spacing:0.3em;
+  text-align:center;
+  padding:8px 20px;
+  border:1px solid var(--ink);
+}
+
+.hero-title{
+  font-family:'Nanum Myeongjo', serif;
+  font-weight:800;
+  font-size:clamp(80px, 18vw, 280px);
+  line-height:0.82;
+  letter-spacing:-0.04em;
+  text-align:center;
+  margin:20px 0;
+  position:relative;
+}
+
+.hero-title .ear{
+  display:inline-block;
+  position:relative;
+}
+
+.hero-title .ear::after{
+  content:'😎';
+  position:absolute;
+  font-size:0.18em;
+  top:-0.1em;
+  right:-1.1em;
+  filter:grayscale(0.3);
+}
+
+.hero-subtitle{
+  font-family:'Gowun Batang', serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(20px, 2.4vw, 32px);
+  text-align:center;
+  margin-top:30px;
+  letter-spacing:-0.01em;
+  color:var(--accent-deep);
+}
+
+.hero-tagline{
+  max-width:680px;
+  margin:50px auto 0;
+  text-align:center;
+  font-family:'Gowun Batang', serif;
+  font-size:17px;
+  line-height:1.9;
+  color:var(--ink);
+}
+
+.hero-meta{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:0;
+  margin-top:60px;
+  border-top:1px solid var(--ink);
+  border-bottom:1px solid var(--ink);
+}
+
+.hero-meta > div{
+  padding:18px 16px;
+  border-right:1px solid var(--ink);
+  text-align:center;
+}
+
+.hero-meta > div:last-child{border-right:none}
+
+.hero-meta dt{
+  font-family:'Bodoni Moda', serif;
+  font-size:10px;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+
+.hero-meta dd{
+  font-family:'Nanum Myeongjo', serif;
+  font-weight:700;
+  font-size:15px;
+}
+
+/* ============ SECTION COMMON ============ */
+.section{
+  padding:100px 0;
+  border-bottom:1px solid var(--ink);
+  position:relative;
+}
+
+.section-num{
+  font-family:'Bodoni Moda', serif;
+  font-style:italic;
+  font-size:14px;
+  letter-spacing:0.1em;
+  color:var(--accent);
+  margin-bottom:12px;
+}
+
+.section-title{
+  font-family:'Nanum Myeongjo', serif;
+  font-weight:800;
+  font-size:clamp(40px, 6vw, 80px);
+  line-height:1;
+  letter-spacing:-0.03em;
+  margin-bottom:50px;
+  position:relative;
+}
+
+.section-title em{
+  font-family:'Bodoni Moda', serif;
+  font-style:italic;
+  font-weight:400;
+  color:var(--accent);
+}
+
+/* ============ INTENT ============ */
+.intent-grid{
+  display:grid;
+  grid-template-columns:1fr 1.4fr;
+  gap:80px;
+  align-items:start;
+}
+
+.intent-quote{
+  font-family:'Bodoni Moda', serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(28px, 3.2vw, 44px);
+  line-height:1.2;
+  color:var(--accent-deep);
+  position:sticky;
+  top:40px;
+}
+
+.intent-quote::before{
+  content:'"';
+  font-size:120px;
+  line-height:0.5;
+  display:block;
+  color:var(--accent);
+  margin-bottom:10px;
+}
+
+.intent-body p{
+  font-family:'Gowun Batang', serif;
+  font-size:17px;
+  line-height:1.95;
+  margin-bottom:22px;
+}
+
+.intent-body p strong{
+  font-weight:700;
+  background:linear-gradient(transparent 60%, rgba(200,53,26,0.25) 60%);
+  padding:0 2px;
+}
+
+/* ============ FLOW ============ */
+.flow-section{
+  background:var(--ink);
+  color:var(--paper);
+  border-bottom:none;
+}
+
+.flow-section .section-title em{color:#e8b04a}
+
+.flow-arc{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:8px 18px;
+  margin:40px 0 60px;
+  font-family:'Bodoni Moda', serif;
+}
+
+.flow-arc span{
+  font-style:italic;
+  font-size:22px;
+  letter-spacing:0.02em;
+}
+
+.flow-arc .arrow{
+  color:#e8b04a;
+  font-size:18px;
+}
+
+.flow-summary{
+  text-align:center;
+  padding:50px 30px;
+  border:2px solid #e8b04a;
+  max-width:880px;
+  margin:0 auto;
+  position:relative;
+}
+
+.flow-summary::before, .flow-summary::after{
+  content:'';
+  position:absolute;
+  width:30px;
+  height:30px;
+  border:2px solid #e8b04a;
+}
+
+.flow-summary::before{top:-10px;left:-10px;border-right:none;border-bottom:none}
+.flow-summary::after{bottom:-10px;right:-10px;border-left:none;border-top:none}
+
+.flow-summary p{
+  font-family:'Nanum Myeongjo', serif;
+  font-weight:400;
+  font-size:clamp(20px, 2.4vw, 30px);
+  line-height:1.5;
+}
+
+/* ============ TONE ============ */
+.tone-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  border:1px solid var(--ink);
+}
+
+.tone-card{
+  padding:50px 40px;
+  border-right:1px solid var(--ink);
+  position:relative;
+}
+
+.tone-card:last-child{border-right:none;background:var(--paper-warm)}
+
+.tone-card-label{
+  font-family:'Bodoni Moda', serif;
+  font-style:italic;
+  font-size:13px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:20px;
+}
+
+.tone-card h3{
+  font-family:'Nanum Myeongjo', serif;
+  font-weight:700;
+  font-size:28px;
+  margin-bottom:24px;
+  line-height:1.3;
+}
+
+.tone-card ul{
+  list-style:none;
+}
+
+.tone-card li{
+  font-family:'Gowun Batang', serif;
+  font-size:16px;
+  padding:8px 0;
+  padding-left:24px;
+  position:relative;
+  border-bottom:1px dashed rgba(26,22,18,0.2);
+}
+
+.tone-card li::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:18px;
+  width:12px;
+  height:1px;
+  background:var(--accent);
+}
+
+.tone-final{
+  margin-top:50px;
+  padding:40px;
+  text-align:center;
+  border-top:3px double var(--ink);
+}
+
+.tone-final p{
+  font-family:'Bodoni Moda', serif;
+  font-style:italic;
+  font-size:clamp(24px, 3vw, 36px);
+  line-height:1.4;
+}
+
+/* ============ TARGETS ============ */
+.target-list{
+  counter-reset:target;
+}
+
+.target-item{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:40px;
+  padding:36px 0;
+  border-top:1px solid var(--ink);
+  align-items:baseline;
+}
+
+.target-item:last-child{border-bottom:1px solid var(--ink)}
+
+.target-item::before{
+  counter-increment:target;
+  content:counter(target, decimal-leading-zero);
+  font-family:'Bodoni Moda', serif;
+  font-style:italic;
+  font-size:48px;
+  color:var(--accent);
+  line-height:1;
+}
+
+.target-item p{
+  font-family:'Gowun Batang', serif;
+  font-size:19px;
+  line-height:1.6;
+}
+
+/* ============ EPISODES ============ */
+.episodes-section{
+  background:var(--paper-warm);
+}
+
+.ep-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  border:1px solid var(--ink);
+  background:var(--paper);
+}
+
+.ep-card{
+  padding:40px 36px;
+  border-right:1px solid var(--ink);
+  border-bottom:1px solid var(--ink);
+  position:relative;
+  transition:background 0.3s ease;
+  cursor:default;
+}
+
+.ep-card:nth-child(2n){border-right:none}
+.ep-card:nth-last-child(-n+2){border-bottom:none}
+.ep-card:nth-child(2n-1):last-child{border-bottom:none}
+
+.ep-card:hover{background:#faf5e8}
+
+.ep-card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  margin-bottom:14px;
+  padding-bottom:14px;
+  border-bottom:1px dashed var(--ink);
+}
+
+.ep-num{
+  font-family:'Bodoni Moda', serif;
+  font-weight:900;
+  font-style:italic;
+  font-size:42px;
+  color:var(--accent);
+  line-height:1;
+}
+
+.ep-num small{
+  font-size:14px;
+  font-style:italic;
+  color:var(--muted);
+  font-weight:400;
+}
+
+.ep-tag{
+  font-family:'Bodoni Moda', serif;
+  font-size:10px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  background:var(--ink);
+  color:var(--paper);
+  padding:4px 10px;
+}
+
+.ep-title{
+  font-family:'Nanum Myeongjo', serif;
+  font-weight:800;
+  font-size:24px;
+  line-height:1.3;
+  letter-spacing:-0.02em;
+  margin-bottom:8px;
+}
+
+.ep-subtitle{
+  font-family:'Gowun Batang', serif;
+  font-style:italic;
+  font-size:15px;
+  color:var(--accent-deep);
+  margin-bottom:24px;
+  padding-bottom:14px;
+  border-bottom:1px solid rgba(26,22,18,0.15);
+}
+
+.ep-intent{
+  font-family:'Gowun Batang', serif;
+  font-size:14px;
+  line-height:1.7;
+  margin-bottom:20px;
+  color:var(--ink);
+}
+
+.ep-questions{
+  margin-bottom:20px;
+}
+
+.ep-questions-label{
+  font-family:'Bodoni Moda', serif;
+  font-size:10px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.ep-questions li{
+  font-family:'Gowun Batang', serif;
+  font-size:13.5px;
+  line-height:1.6;
+  list-style:none;
+  padding-left:14px;
+  position:relative;
+  margin-bottom:4px;
+  color:var(--ink);
+  opacity:0.85;
+}
+
+.ep-questions li::before{
+  content:'·';
+  position:absolute;
+  left:2px;
+  font-weight:700;
+}
+
+.ep-summary{
+  margin-top:auto;
+  padding-top:18px;
+  border-top:2px solid var(--ink);
+  font-family:'Nanum Myeongjo', serif;
+  font-weight:700;
+  font-size:14px;
+  line-height:1.6;
+  letter-spacing:-0.01em;
+}
+
+.ep-summary::before{
+  content:'한 줄 정리 — ';
+  font-family:'Bodoni Moda', serif;
+  font-style:italic;
+  font-weight:400;
+  color:var(--accent);
+}
+
+/* ============ AXIS ============ */
+.axis-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:30px;
+}
+
+.axis-card{
+  border:1px solid var(--ink);
+  padding:40px;
+  position:relative;
+  background:var(--paper);
+}
+
+.axis-card-num{
+  position:absolute;
+  top:-20px;
+  left:30px;
+  background:var(--paper);
+  padding:0 12px;
+  font-family:'Bodoni Moda', serif;
+  font-style:italic;
+  font-size:14px;
+  letter-spacing:0.15em;
+  color:var(--accent);
+}
+
+.axis-card h3{
+  font-family:'Nanum Myeongjo', serif;
+  font-weight:800;
+  font-size:30px;
+  margin-bottom:18px;
+  letter-spacing:-0.02em;
+}
+
+.axis-card h3 span{color:var(--accent)}
+
+.axis-card p{
+  font-family:'Gowun Batang', serif;
+  font-size:15.5px;
+  line-height:1.8;
+  margin-bottom:14px;
+}
+
+.axis-card .episodes{
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px dashed var(--ink);
+  font-family:'Bodoni Moda', serif;
+  font-style:italic;
+  font-size:13px;
+  color:var(--muted);
+  letter-spacing:0.05em;
+}
+
+/* ============ FORMAT ============ */
+.format-wrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+}
+
+.format-block h3{
+  font-family:'Nanum Myeongjo', serif;
+  font-weight:800;
+  font-size:26px;
+  padding-bottom:16px;
+  margin-bottom:24px;
+  border-bottom:2px solid var(--ink);
+}
+
+.format-list{
+  counter-reset:fmt;
+  list-style:none;
+}
+
+.format-list li{
+  padding:14px 0 14px 50px;
+  border-bottom:1px solid rgba(26,22,18,0.15);
+  position:relative;
+  font-family:'Gowun Batang', serif;
+  font-size:16px;
+}
+
+.format-list li::before{
+  counter-increment:fmt;
+  content:counter(fmt);
+  position:absolute;
+  left:0;
+  top:14px;
+  font-family:'Bodoni Moda', serif;
+  font-style:italic;
+  font-size:20px;
+  color:var(--accent);
+  width:36px;
+  height:36px;
+  border:1px solid var(--accent);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+}
+
+.corner-list{list-style:none}
+
+.corner-list li{
+  padding:18px 0;
+  border-bottom:1px dashed var(--ink);
+}
+
+.corner-list li:last-child{border-bottom:none}
+
+.corner-name{
+  font-family:'Nanum Myeongjo', serif;
+  font-weight:700;
+  font-size:17px;
+  color:var(--accent-deep);
+  margin-bottom:4px;
+}
+
+.corner-desc{
+  font-family:'Gowun Batang', serif;
+  font-size:14px;
+  color:var(--ink);
+  opacity:0.85;
+}
+
+/* ============ DIFFERENCE ============ */
+.diff-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:0;
+  border:1px solid var(--ink);
+}
+
+.diff-card{
+  padding:40px 30px;
+  border-right:1px solid var(--ink);
+  position:relative;
+  background:var(--paper);
+}
+
+.diff-card:last-child{border-right:none}
+
+.diff-card-num{
+  font-family:'Bodoni Moda', serif;
+  font-style:italic;
+  font-weight:900;
+  font-size:80px;
+  line-height:1;
+  color:var(--accent);
+  margin-bottom:20px;
+  opacity:0.85;
+}
+
+.diff-card h3{
+  font-family:'Nanum Myeongjo', serif;
+  font-weight:800;
+  font-size:22px;
+  line-height:1.3;
+  margin-bottom:18px;
+  letter-spacing:-0.01em;
+}
+
+.diff-card p{
+  font-family:'Gowun Batang', serif;
+  font-size:15px;
+  line-height:1.75;
+}
+
+/* ============ TAGLINES ============ */
+.tag-section{
+  background:var(--ink);
+  color:var(--paper);
+  text-align:center;
+}
+
+.tag-section .section-title em{color:#e8b04a}
+
+.tag-list{
+  display:flex;
+  flex-direction:column;
+  gap:50px;
+  max-width:900px;
+  margin:0 auto;
+}
+
+.tag-item{
+  position:relative;
+  padding:30px 20px;
+}
+
+.tag-item-label{
+  font-family:'Bodoni Moda', serif;
+  font-style:italic;
+  font-size:13px;
+  letter-spacing:0.3em;
+  color:#e8b04a;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+
+.tag-item p{
+  font-family:'Nanum Myeongjo', serif;
+  font-weight:400;
+  font-size:clamp(20px, 2.6vw, 32px);
+  line-height:1.5;
+  letter-spacing:-0.01em;
+}
+
+.tag-item:not(:last-child)::after{
+  content:'❋';
+  position:absolute;
+  bottom:-35px;
+  left:50%;
+  transform:translateX(-50%);
+  color:#e8b04a;
+  font-size:18px;
+}
+
+/* ============ FOOTER ============ */
+.footer{
+  padding:80px 0 50px;
+  border-top:3px double var(--ink);
+  text-align:center;
+}
+
+.footer-mark{
+  font-family:'Nanum Myeongjo', serif;
+  font-weight:800;
+  font-size:80px;
+  line-height:1;
+  margin-bottom:30px;
+}
+
+.footer-meta{
+  font-family:'Bodoni Moda', serif;
+  font-style:italic;
+  font-size:14px;
+  letter-spacing:0.1em;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+
+.footer-tag{
+  font-family:'Gowun Batang', serif;
+  font-size:15px;
+  color:var(--accent-deep);
+}
+
+/* ============ ANIMATIONS ============ */
+.fade-in{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px){
+  .container{padding:0 24px}
+  .hero-grid{grid-template-columns:1fr;gap:20px;text-align:center}
+  .hero-label.right{text-align:center}
+  .hero-meta{grid-template-columns:1fr 1fr}
+  .hero-meta > div:nth-child(2){border-right:none}
+  .hero-meta > div:nth-child(1),
+  .hero-meta > div:nth-child(2){border-bottom:1px solid var(--ink)}
+  .intent-grid, .tone-grid, .axis-grid, .diff-grid, .ep-grid, .format-wrap{
+    grid-template-columns:1fr;
+  }
+  .intent-quote{position:static}
+  .tone-card{border-right:none;border-bottom:1px solid var(--ink)}
+  .tone-card:last-child{border-bottom:none}
+  .diff-card{border-right:none;border-bottom:1px solid var(--ink)}
+  .diff-card:last-child{border-bottom:none}
+  .ep-card{border-right:none}
+  .ep-card:nth-child(2n){border-right:none}
+  .ep-card:nth-last-child(-n+2):not(:last-child){border-bottom:1px solid var(--ink)}
+  .section{padding:70px 0}
+  .target-item{grid-template-columns:1fr;gap:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div class="topbar-left">An Audio Magazine for The Not-Yet-Cool</div>
+    <div class="topbar-right">
+      <span>VOL. 01</span>
+      <span>2026</span>
+      <span>KRW ∞</span>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-label">A Conversational<br>Podcast Pilot</div>
+      <div class="hero-issue">SEASON ONE · PROPOSAL</div>
+      <div class="hero-label right">Two Women,<br>Ten Conversations</div>
+    </div>
+
+    <h1 class="hero-title">멋찐<span class="ear">걸</span></h1>
+
+    <p class="hero-subtitle">— 아직 멋쪄지지 않은 인간들 —</p>
+
+    <p class="hero-tagline">
+      멋진 여자가 되고 싶지만 아직은 한참 멀었다고 느끼는 두 사람이,<br>
+      삶과 예술과 일과 사랑을 통과하며 자기만의 멋을 찾아가는 대화형 팟캐스트.
+    </p>
+
+    <dl class="hero-meta">
+      <div><dt>Format</dt><dd>여성 2인 토크</dd></div>
+      <div><dt>Episodes</dt><dd>10 Episodes</dd></div>
+      <div><dt>Runtime</dt><dd>35–55 min</dd></div>
+      <div><dt>Cycle</dt><dd>Weekly</dd></div>
+    </dl>
+  </div>
+</header>
+
+<!-- 기획 의도 -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">§ 01 — Intent</div>
+    <h2 class="section-title">왜 우리는 <em>아직</em><br>멋쪄지지 않았는가</h2>
+
+    <div class="intent-grid">
+      <div class="intent-quote">
+        나도 그렇다,<br>
+        나도 모르겠다,<br>
+        그래도 계속<br>살아가보자.
+      </div>
+      <div class="intent-body">
+        <p>세상은 늘 우리에게 더 나은 사람, 더 멋진 사람, 더 완성된 사람이 되라고 말한다. 하지만 실제 삶은 멋짐보다 <strong>구질구질함</strong>에 가깝고, 확신보다 흔들림이 많고, 성공보다 실패의 기억이 더 선명하다.</p>
+        <p>『멋찐걸』은 바로 그 지점에서 출발한다. 이미 멋진 사람들의 완성형 인생담이 아니라, 여전히 헤매고 배우고 부끄러워하고 후회하면서도 끝내 자기 삶을 살아내려는 사람들의 이야기를 나눈다.</p>
+        <p>이 프로그램은 <strong>"정답"을 말하지 않는다.</strong> 두 진행자는 각자의 삶의 단계와 감각, 취향과 경험이 다르기 때문에 같은 질문을 두고도 다른 방향으로 생각한다. 그 차이에서 생기는 긴장과 공감이 이 콘텐츠의 핵심 재미가 된다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 시즌의 흐름 -->
+<section class="section flow-section">
+  <div class="container">
+    <div class="section-num" style="color:#e8b04a">§ 02 — Arc</div>
+    <h2 class="section-title">시즌 전체의 <em>정서적</em> 흐름</h2>
+
+    <div class="flow-arc">
+      <span>정체성</span><span class="arrow">→</span>
+      <span>영감</span><span class="arrow">→</span>
+      <span>불안</span><span class="arrow">→</span>
+      <span>노동</span><span class="arrow">→</span>
+      <span>미래</span><span class="arrow">→</span>
+      <span>배움</span><span class="arrow">→</span>
+      <span>윤리</span><span class="arrow">→</span>
+      <span>관계</span><span class="arrow">→</span>
+      <span>취향</span><span class="arrow">→</span>
+      <span>실패</span>
+    </div>
+
+    <div class="flow-summary">
+      <p>
+        "나는 어떤 사람인가?"에서 출발해<br>
+        "어떻게 살아야 하지?"를 지나<br>
+        결국 <em style="font-family:'Bodoni Moda',serif;font-style:italic;color:#e8b04a">"내 삶을 어떻게 받아들일 것인가?"</em>로 끝나는 구조.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 톤앤매너 -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">§ 03 — Tone</div>
+    <h2 class="section-title">웃기지만 가볍지 않고,<br><em>진지하지만</em> 무겁지 않게</h2>
+
+    <div class="tone-grid">
+      <div class="tone-card">
+        <div class="tone-card-label">On The Surface</div>
+        <h3>겉으로는 — 수다, 받아치기, 자기 디스</h3>
+        <ul>
+          <li>일상에 밀착된 농담</li>
+          <li>서로의 결점을 웃음으로 만지기</li>
+          <li>받아치는 호흡과 끊김 없는 대화의 리듬</li>
+          <li>"나만 그런 거 아니구나"의 공감</li>
+        </ul>
+      </div>
+      <div class="tone-card">
+        <div class="tone-card-label">Underneath It All</div>
+        <h3>속으로는 — 고백, 사유, 여성으로 살아가는 감각</h3>
+        <ul>
+          <li>창작자의 시선으로 일상을 다시 읽기</li>
+          <li>관계와 노동에 대한 정직한 질문</li>
+          <li>흔들림을 부끄러워하지 않는 자기 고백</li>
+          <li>오래 남는 문장 한 줄</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tone-final">
+      <p>"웃기지만 가볍지 않고, 진지하지만 무겁지 않은 대화."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 타깃 -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">§ 04 — Audience</div>
+    <h2 class="section-title">이 이야기가<br><em>닿을 사람들</em></h2>
+
+    <div class="target-list">
+      <div class="target-item"><p>자기 인생을 대충 살고 싶지는 않은 사람</p></div>
+      <div class="target-item"><p>그런데 맨날 잘 살고 있는 것 같지는 않은 사람</p></div>
+      <div class="target-item"><p>예술, 창작, 콘텐츠, 글쓰기, 영화, 음악 같은 감수성의 언어에 익숙한 사람</p></div>
+      <div class="target-item"><p>결혼·비혼·직장·프리랜서·예술노동 사이에서 자기 위치를 자주 다시 묻게 되는 사람</p></div>
+      <div class="target-item"><p>남의 성공담보다, 흔들리는 사람의 진짜 말이 더 위로가 되는 사람</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 포맷 -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">§ 05 — Format</div>
+    <h2 class="section-title">한 회차의 <em>구성</em></h2>
+
+    <div class="format-wrap">
+      <div class="format-block">
+        <h3>회차 기본 구성</h3>
+        <ol class="format-list">
+          <li>오프닝 — 근황 토크</li>
+          <li>오늘의 질문 던지기</li>
+          <li>각자의 경험담</li>
+          <li>생각이 갈리는 지점 토론</li>
+          <li>한 문장 결론 (또는 결론 없는 결론)</li>
+          <li>엔딩 — 다음 화 예고</li>
+        </ol>
+      </div>
+      <div class="format-block">
+        <h3>고정 코너</h3>
+        <ul class="corner-list">
+          <li>
+            <div class="corner-name">오늘의 낫멋 포인트</div>
+            <div class="corner-desc">오늘 제일 구질구질했지만 인간적이었던 순간</div>
+          </li>
+          <li>
+            <div class="corner-name">멋찐 문장</div>
+            <div class="corner-desc">각 회차를 한 줄로 정리하는 문장</div>
+          </li>
+          <li>
+            <div class="corner-name">그때는 몰랐지</div>
+            <div class="corner-desc">과거의 나를 지금의 내가 돌아보는 코너</div>
+          </li>
+          <li>
+            <div class="corner-name">언니, 근데 진짜로</div>
+            <div class="corner-desc">청취자 사연·질문을 받아 현실적으로 답하는 코너</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 차별점 -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">§ 06 — Difference</div>
+    <h2 class="section-title">이 프로그램만의 <em>결</em></h2>
+
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="diff-card-num">01</div>
+        <h3>수다처럼 들리지만 사실은 삶의 질문을 던진다</h3>
+        <p>많은 토크 콘텐츠가 '무슨 일이 있었다'에서 끝난다면, 이 기획은 거기서 한 발 더 들어가 "그 일이 내 삶을 어떻게 바꿨나"까지 간다.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-card-num">02</div>
+        <h3>여성 2인의 대화이되, 단순 공감팔이가 아니다</h3>
+        <p>공감은 기본값. 하지만 이 프로그램의 힘은 <em>서로 다른 입장과 온도차</em>에서 나온다. 기혼 30대와 비혼 40대, 예술노동과 직장생활, 낭만과 현실이 계속 충돌한다.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-card-num">03</div>
+        <h3>제목 자체가 콘텐츠의 결을 만든다</h3>
+        <p>회차 제목들이 시처럼 기억되도록 설계됐다. 클릭형 제목보다 훨씬 오래 남고, <em>'토크쇼'인 동시에 문장과 제목으로 정체성을 갖는 브랜드</em>가 된다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 에피소드 -->
+<section class="section episodes-section">
+  <div class="container">
+    <div class="section-num">§ 07 — Episodes</div>
+    <h2 class="section-title">10번의 <em>대화</em></h2>
+
+    <div class="ep-grid">
+
+      <!-- E01 -->
+      <article class="ep-card">
+        <div class="ep-card-header">
+          <div class="ep-num">E<small>01</small></div>
+          <div class="ep-tag">정체성</div>
+        </div>
+        <h3 class="ep-title">아직 멋쪄지지 않은 낫멋진 인간들</h3>
+        <p class="ep-subtitle">멋진 척도 못하는 우리가 좋아</p>
+        <p class="ep-intent">시즌의 출발점. 우리는 왜 자꾸 멋진 사람이 되고 싶어 하는지, 그런데 왜 늘 스스로를 덜 멋지다고 느끼는지 이야기한다.</p>
+        <div class="ep-questions">
+          <div class="ep-questions-label">Today's Questions</div>
+          <ul>
+            <li>'멋진 사람'이란 대체 어떤 사람일까?</li>
+            <li>나는 왜 자꾸 나를 덜 멋지다고 느낄까?</li>
+            <li>낫멋진 상태를 인정하는 것이 오히려 시작일 수 있을까?</li>
+          </ul>
+        </div>
+        <div class="ep-summary">멋은 완성형이 아니라, 덜 멋진 자신을 데리고도 계속 사는 태도일지 모른다.</div>
+      </article>
+
+      <!-- E02 -->
+      <article class="ep-card">
+        <div class="ep-card-header">
+          <div class="ep-num">E<small>02</small></div>
+          <div class="ep-tag">영감</div>
+        </div>
+        <h3 class="ep-title">나답게 살아가기, 말하자면 영감같은 것</h3>
+        <p class="ep-subtitle">살아가는 감각으로서의 영감</p>
+        <p class="ep-intent">'나답게 산다'는 말이 너무 흔해졌지만, 실제로는 제일 어려운 일이라는 걸 이야기하는 회차.</p>
+        <div class="ep-questions">
+          <div class="ep-questions-label">Today's Questions</div>
+          <ul>
+            <li>나답게 산다는 건 정말 가능한가?</li>
+            <li>영감은 특별한 순간에만 오는가, 삶의 태도에서 생기는가?</li>
+            <li>타인의 시선 없이 나를 설명할 수 있는가?</li>
+          </ul>
+        </div>
+        <div class="ep-summary">나답게 산다는 건 정체성을 증명하는 일이 아니라, 자꾸 돌아오는 감각을 믿는 일이다.</div>
+      </article>
+
+      <!-- E03 -->
+      <article class="ep-card">
+        <div class="ep-card-header">
+          <div class="ep-num">E<small>03</small></div>
+          <div class="ep-tag">불안</div>
+        </div>
+        <h3 class="ep-title">내 인생 최고의 순간, 최악의 순간을 기다리며</h3>
+        <p class="ep-subtitle">아직 오지 않은 것들에 대하여</p>
+        <p class="ep-intent">아직 오지 않은 최고의 순간을 기다리면서, 동시에 최악의 순간을 두려워하는 우리의 마음을 다룬다.</p>
+        <div class="ep-questions">
+          <div class="ep-questions-label">Today's Questions</div>
+          <ul>
+            <li>인생 최고의 순간은 지나고 나서야 알게 되는 걸까?</li>
+            <li>최악의 순간은 정말 피할 수 없는 걸까?</li>
+            <li>우리는 늘 미래의 사건을 기다리며 현재를 유예하고 있지 않은가?</li>
+          </ul>
+        </div>
+        <div class="ep-summary">최고의 순간도, 최악의 순간도, 결국 나를 지나가며 다른 나를 만든다.</div>
+      </article>
+
+      <!-- E04 -->
+      <article class="ep-card">
+        <div class="ep-card-header">
+          <div class="ep-num">E<small>04</small></div>
+          <div class="ep-tag">노동</div>
+        </div>
+        <h3 class="ep-title">예대 출신들이 말하는 직장인의 비애</h3>
+        <p class="ep-subtitle">감수성으로 보고서 쓰는 사람들</p>
+        <p class="ep-intent">예술을 꿈꾸던 사람이 조직과 노동 안에서 부딪히는 현실을 솔직하게 풀어내는 회차.</p>
+        <div class="ep-questions">
+          <div class="ep-questions-label">Today's Questions</div>
+          <ul>
+            <li>예술 감수성을 가진 사람이 직장인이 되면 무엇이 가장 힘든가?</li>
+            <li>생계와 창작 사이의 타협은 배신일까 성장일까?</li>
+            <li>조직생활은 나를 무디게 하는가, 단단하게 하는가?</li>
+          </ul>
+        </div>
+        <div class="ep-summary">예술과 노동은 대립하는 게 아니라, 대부분의 사람 안에서 동시에 버티고 있다.</div>
+      </article>
+
+      <!-- E05 -->
+      <article class="ep-card">
+        <div class="ep-card-header">
+          <div class="ep-num">E<small>05</small></div>
+          <div class="ep-tag">미래</div>
+        </div>
+        <h3 class="ep-title">꼬부랑 할머니가 되도 영화를 찍고 싶을까</h3>
+        <p class="ep-subtitle">늙지 않는 마음에 대하여</p>
+        <p class="ep-intent">시간이 흘러도 계속 하고 싶은 일이 있는가, 그 마음은 늙지 않는가를 묻는 회차.</p>
+        <div class="ep-questions">
+          <div class="ep-questions-label">Today's Questions</div>
+          <ul>
+            <li>나는 정말 평생 이 일을 사랑할 수 있을까?</li>
+            <li>재능보다 오래가는 건 집착일까 애정일까?</li>
+            <li>늙는다는 건 꿈을 포기하는 일일까, 더 정확해지는 일일까?</li>
+          </ul>
+        </div>
+        <div class="ep-summary">오래 하고 싶은 마음이 있다면, 그건 재능 이전에 사랑일지 모른다.</div>
+      </article>
+
+      <!-- E06 -->
+      <article class="ep-card">
+        <div class="ep-card-header">
+          <div class="ep-num">E<small>06</small></div>
+          <div class="ep-tag">배움</div>
+        </div>
+        <h3 class="ep-title">죽을때까지 배움은 끝이 없나니</h3>
+        <p class="ep-subtitle">초보가 되는 일의 수치심과 자유</p>
+        <p class="ep-intent">성장은 멋진 말이지만 실제로는 피곤하고, 배우는 일은 늘 자존심 상한다는 현실을 다룬다.</p>
+        <div class="ep-questions">
+          <div class="ep-questions-label">Today's Questions</div>
+          <ul>
+            <li>어른이 되어서도 계속 배워야 한다는 건 축복일까 형벌일까?</li>
+            <li>모른다는 걸 인정하는 일은 왜 이렇게 어려울까?</li>
+            <li>배움은 실력을 위한 것인가, 태도를 위한 것인가?</li>
+          </ul>
+        </div>
+        <div class="ep-summary">배움은 완성되기 위한 과정이 아니라, 계속 미완성으로 살아가는 연습일지 모른다.</div>
+      </article>
+
+      <!-- E07 -->
+      <article class="ep-card">
+        <div class="ep-card-header">
+          <div class="ep-num">E<small>07</small></div>
+          <div class="ep-tag">윤리</div>
+        </div>
+        <h3 class="ep-title">작품과 그 만든이의 인생을 떼놓고 볼 수 있을까?</h3>
+        <p class="ep-subtitle">사랑했던 작품을 잃는다는 것</p>
+        <p class="ep-intent">예술과 윤리, 작품과 창작자의 삶을 분리할 수 있는지에 대해 각자의 입장을 나누는 회차.</p>
+        <div class="ep-questions">
+          <div class="ep-questions-label">Today's Questions</div>
+          <ul>
+            <li>좋은 작품을 만든 사람이 반드시 좋은 사람일 필요가 있을까?</li>
+            <li>창작자의 사생활이나 범죄는 작품 감상에 어디까지 영향을 미쳐야 하나?</li>
+            <li>사랑했던 작품을 포기해야 하는 순간, 우리는 무엇을 잃는가?</li>
+          </ul>
+        </div>
+        <div class="ep-summary">작품은 혼자 존재하지 않지만, 그렇다고 창작자의 인생으로만 환원되지도 않는다.</div>
+      </article>
+
+      <!-- E08 -->
+      <article class="ep-card">
+        <div class="ep-card-header">
+          <div class="ep-num">E<small>08</small></div>
+          <div class="ep-tag">관계</div>
+        </div>
+        <h3 class="ep-title">기혼 30대와 비혼 40대의 결혼관</h3>
+        <p class="ep-subtitle">결혼은 정답이 아니라 선택의 모양일 뿐</p>
+        <p class="ep-intent">결혼을 찬양하거나 부정하는 대신, 서로 다른 삶의 단계에서 결혼이 어떻게 다르게 보이는지 진짜 대화를 나누는 회차.</p>
+        <div class="ep-questions">
+          <div class="ep-questions-label">Today's Questions</div>
+          <ul>
+            <li>결혼은 제도일까 관계일까 선택일까 생존일까?</li>
+            <li>기혼과 비혼은 서로를 오해하고 있지 않은가?</li>
+            <li>사랑, 동반자, 외로움, 자유는 결혼이라는 틀 안팎에서 어떻게 달라지는가?</li>
+          </ul>
+        </div>
+        <div class="ep-summary">결혼은 정답이 아니라, 각자의 삶의 방식이 드러나는 하나의 선택일 뿐이다.</div>
+      </article>
+
+      <!-- E09 -->
+      <article class="ep-card">
+        <div class="ep-card-header">
+          <div class="ep-num">E<small>09</small></div>
+          <div class="ep-tag">취향</div>
+        </div>
+        <h3 class="ep-title">내가 사랑한 영화와 음악들</h3>
+        <p class="ep-subtitle">지금의 나를 이루는 언어들 (영화/음악 분리 가능)</p>
+        <p class="ep-intent">두 진행자를 만든 취향의 계보를 따라가며, 어떤 작품들이 지금의 나를 만들었는지 이야기하는 회차.</p>
+        <div class="ep-questions">
+          <div class="ep-questions-label">Today's Questions</div>
+          <ul>
+            <li>나를 만든 첫 영화와 첫 음악은 무엇이었나?</li>
+            <li>왜 어떤 작품은 시간이 지나도 나를 떠나지 않는가?</li>
+            <li>취향은 타고나는가, 길러지는가?</li>
+          </ul>
+        </div>
+        <div class="ep-summary">우리가 사랑한 작품들은 지나간 취향이 아니라, 지금의 나를 이루는 언어들이다.</div>
+      </article>
+
+      <!-- E10 -->
+      <article class="ep-card">
+        <div class="ep-card-header">
+          <div class="ep-num">E<small>10</small></div>
+          <div class="ep-tag">실패</div>
+        </div>
+        <h3 class="ep-title">나의 '실패' 일대기</h3>
+        <p class="ep-subtitle">망한 줄 알았는데 아직 안 끝났더라고</p>
+        <p class="ep-intent">시즌 피날레. 성공담 대신 실패담을 꺼내면서, 결국 실패가 나를 어떻게 만들었는지 돌아보는 회차.</p>
+        <div class="ep-questions">
+          <div class="ep-questions-label">Today's Questions</div>
+          <ul>
+            <li>나는 무엇을 실패라고 불러왔나?</li>
+            <li>실패는 정말 끝이었나, 아니면 이름만 실패였던 다른 과정이었나?</li>
+            <li>남들이 모르는 나만의 실패는 지금의 나를 어떻게 바꿨나?</li>
+          </ul>
+        </div>
+        <div class="ep-summary">실패는 인생의 반대말이 아니라, 인생이 내게 남긴 가장 오래가는 문장일지 모른다.</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- 4가지 축 -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">§ 08 — Axis</div>
+    <h2 class="section-title">시즌을 관통하는<br><em>네 개의</em> 축</h2>
+
+    <div class="axis-grid">
+      <div class="axis-card">
+        <div class="axis-card-num">First Axis</div>
+        <h3>정체성 <span>—</span></h3>
+        <p>"나는 누구인가, 어떤 사람으로 살고 싶은가"라는 질문이 계속 돌아온다. 시즌 전체를 관통하는 가장 단단한 밑줄이다.</p>
+        <div class="episodes">Strong in · E01 · E02 · E09</div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-card-num">Second Axis</div>
+        <h3>창작과 노동 <span>—</span></h3>
+        <p>감수성이 있는 사람이 현실 노동을 통과하는 방식. 멋찐걸만의 결을 만들어주는 두 번째 축이다.</p>
+        <div class="episodes">Strong in · E04 · E05 · E06 · E10</div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-card-num">Third Axis</div>
+        <h3>관계와 삶의 선택 <span>—</span></h3>
+        <p>결혼, 비혼, 동반자, 외로움, 타인의 시선. 여성 청취자 입장에서 가장 무겁게 와닿는 주제들.</p>
+        <div class="episodes">Strong in · E08 · E02 · E03 · E05 · E10</div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-card-num">Fourth Axis</div>
+        <h3>실패와 성장 <span>—</span></h3>
+        <p>이 기획의 진짜 매력은 성공한 사람의 조언이 아니라, 망해본 사람의 정직한 말. 모든 회차에 흐른다.</p>
+        <div class="episodes">Strong in · All Episodes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 소개문구 -->
+<section class="section tag-section">
+  <div class="container">
+    <div class="section-num" style="color:#e8b04a">§ 09 — Taglines</div>
+    <h2 class="section-title" style="color:var(--paper)">한 줄로<br>말하자면<em>,</em></h2>
+
+    <div class="tag-list">
+      <div class="tag-item">
+        <div class="tag-item-label">Version 01</div>
+        <p>"멋진 사람이 되고 싶지만 아직은 한참 멀었다고 느끼는 두 사람이,<br>삶과 예술과 사랑과 실패를 통과하며 자기만의 멋을 찾아가는 대화."</p>
+      </div>
+      <div class="tag-item">
+        <div class="tag-item-label">Version 02</div>
+        <p>"잘 사는 법보다, 덜 망하면서 계속 살아가는 법을 이야기하는<br>두 인간의 수다형 에세이."</p>
+      </div>
+      <div class="tag-item">
+        <div class="tag-item-label">Version 03</div>
+        <p>"완성된 사람의 조언이 아니라,<br>아직 멋져지는 중인 사람들의 진짜 말."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-mark">멋찐걸 😎</div>
+    <div class="footer-meta">SEASON 01 · PILOT PROPOSAL · 2026</div>
+    <p class="footer-tag">아직 덜 멋진 인간들이, 자기 삶을 해석하는 법을 배워가는 10번의 대화.</p>
+  </div>
+</footer>
+
+<script>
+// 페이드인 옵저버
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+}, {threshold:0.1, rootMargin:'0px 0px -50px 0px'});
+
+document.querySelectorAll('.section').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
